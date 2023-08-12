@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class DaržasConfig(AppConfig):
+class VartotojoProfilisConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'daržas'
+    name = 'vartotojo_profilis'

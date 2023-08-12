@@ -1,12 +1,12 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.views import View
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import Augalas
 
 
 # Create your views here.
-class AugalasView(View):
+class AugalasDetailView(DetailView):
     model = Augalas
 
 
@@ -65,5 +65,5 @@ class Naujas_augalo_View( View ):
         augalas.save()
 
         # 4. Po naujoo augalo įtraukimo į duomenų bazę vartotojas gražinamas į pradinį augalų sąrašo puslapi.
-        return redirect(f"/augalas/augalai/{augalas.id}/")
+        return redirect(f"/augalai/")
 #

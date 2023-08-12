@@ -4,48 +4,30 @@
  <h1 class="pirma">Augalai</h1> <br>
 
 <ul>
+
     {% for augalas in object_list %}
         <li>
-            <a href="{% url 'augalo-id' augalas.id %}">
-                <br>{{ augalas.get_kategorija_display }} <br>
-                <br>{{ augalas.get_pavadinimas_display }} <br>
-                <br>{{ augalas.veisle }} <br>
-                <br>{{ augalas.kiekis }} <br>
+
+            <a href="{% url 'augalo-id' augalas.id %}"></a><br>
+
+                <br>Augalo kategorija: {{ augalas.kategorija }}<br>
+                <br>Augalo pavadinimas: {{ augalas.pavadinimas }} <br>
+                <br>Augalo veislė: {{ augalas.veisle }} <br>
+                <br>Augalų kiekis: {{ augalas.kiekis }} <br>
                 {% if augalas.talpos_dydis %}
-                <br>{{ augalas.talpos_dydis }}<br>
+                <br>Vazono - daigyklos talpa: {{ augalas.talpos_dydis }}<br>
                 {% endif %}
-                <br>{{ augalas.sejimo_data }} <br>
-                <br>{{ augalas.sejimo_vieta }} <br>
+                <br>Augalo sėjimo-sodinimo data: {{ augalas.sejimo_arba_sodinimo_data }} <br>
+                <br>Augalo sėjimo-sodinimo vieta: {{ augalas.sejimo_arba_sodinimo_vieta}} <br>
                 {% if augalas.zemiu_rusis %}
-                <br>{{ augalas.zemiu_rusis }}<br>
+                <br>Augalo sėjimo-sodinimo vietos žemių rūšis: {{ augalas.zemiu_rusis }}<br>
                 {% endif %}
                 {% if augalas.pastabos %}
-                <br>{{ augalas.pastabos }}<br>
+                <br>Pastabos: {{ augalas.pastabos }}<br>
                 {% endif %}
 
         </li>
     {% endfor %}
 </ul>
 
-<!-- Augalų Puslapiavimas -->
-  <div class="pagination">
-    <span class="step-links">
-        {% if page_obj.has_previous %}
-            <a href="?page=1">&laquo; pirmas</a>
-            <a href="?page={{ page_obj.previous_page_number }}">atgal</a>
-        {% endif %}
-
-        <span class="current">
-            {{ page_obj.number }} iš {{ page_obj.paginator.num_pages }}
-        </span>
-
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">pirmyn</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">paskutinis &raquo;</a>
-        {% endif %}
-    </span>
-</div>
-
-
 {% endblock %}
-

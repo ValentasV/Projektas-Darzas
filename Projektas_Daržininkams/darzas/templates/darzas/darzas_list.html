@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block "content" %}
+
+ <h1 class="antra">Darzas</h1> <br>
+
+<ul>
+
+    {% for darzas in object_list %}
+        <li>
+
+
+                <br>Augalo pavadinimas ir veislė: {{ darzas.augalas }}<br>
+                {% if darzas.pikiavimo_data %}
+                <br>Augalų pikiavimo data: {{ darzas.pikiavimo_data }}<br>
+                {% endif %}
+                <br>Augalų persodinimo vieta: {{ darzas.persodinimo_vieta }} <br>
+                <br>Augalų užsodinimo plotas: {{ darzas.augalo_uzsodinimo_plotas }} <br>
+                {% if darzas.derliaus_nuemimo_data %}
+                <br>Daržo derliaus nuėmimo data: {{ darzas.derliaus_nuemimo_data }}<br>
+                {% endif %}
+                <br>Derliaus kiekis: {{ darzas.derliaus_kiekis }} <br>
+                <br>Derliaus sandėliavimo vieta: {{ darzas.derliaus_sandeliavimo_vieta  }} <br>
+                <br>Derliaus laikymo laikotarpis: {{ darzas.derliaus_laikymo_laikotarpis}} <br>
+
+
+        </li>
+    {% endfor %}
+</ul>
+
+
+
+{% endblock %}
+

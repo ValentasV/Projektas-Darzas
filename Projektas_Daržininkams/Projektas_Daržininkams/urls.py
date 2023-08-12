@@ -1,5 +1,5 @@
 """
-URL configuration for projektas_daržininkams project.
+URL configuration for Projektas_Daržininkams project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -19,6 +19,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("augalas/", include("augalas.urls")),
-    path("daržas/", include("daržas.urls")),
+    path("augalai/", include("augalas.urls")),
+    path("darzas/", include("darzas.urls")),
 ]

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block "content" %}
+
+ <h1 class="pirma">Augalai</h1> <br>
+
+
+
+                <br>{{ augalas.kategorija }}<br>
+                <br>{{ augalas.pavadinimas }} <br>
+                <br>{{ augalas.veisle }} <br>
+                <br>{{ augalas.kiekis }} <br>
+                {% if augalas.talpos_dydis %}
+                <br>{{ augalas.talpos_dydis }}<br>
+                {% endif %}
+                <br>{{ augalas.sejimo_data }} <br>
+                <br>{{ augalas.sejimo_vieta }} <br>
+                {% if augalas.zemiu_rusis %}
+                <br>{{ augalas.zemiu_rusis }}<br>
+                {% endif %}
+                {% if augalas.pastabos %}
+                <br>{{ augalas.pastabos }}<br>
+                {% endif %}
+
+
+
+{% endblock %}
+
