@@ -1,60 +1,24 @@
 {% extends "base.html" %}
 
-{% block "title" %}
-    Naujo Augalo sukūrimas
-{% endblock %}
 
 {% block "content" %}
-    <h1>Naujas Augalas</h1>
 
-    {% if messages %}
-        {% for zinute in messages %}
-            <div>
-                {{ zinute }}
-            </div>
-        {% endfor %}
+    <h1 style="text-align: center;">Pridėti Naują Augalą</h1>
+    <br/><br/>
+    {% if submitted %}
+        Jūs sėkmingai sukūrėte ir pridėjote savo augalą !
+    {% else %}
+
+
+        <form action="" method=POST style="display: flex-direction: column; align-items: center">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <input type="submit" value="Pridėti" class="btn btn-success">
+
+
+        </form>
     {% endif %}
-<br>
-<br>
-    <form action="{% url 'naujas-augalas' %}" method="post">
-        {% csrf_token %}
-        <div>
-            <label>Įveskite augalo kategoriją; Sėklos, Daigai, Gėlių sėklos,ir t.t:</label>
-            <input type="text" name="kategorija">
-        </div>
-        <div>
-            <label>Nurodykite augalo pavadinimą; agurkai, morkos ir t.t:</label>
-            <input type="text" name="pavadinimas">
-        </div>
-        <div>
-            <label>Nurodykite augalo veislę:</label>
-            <input type="text" name="veisle">
-        </div>
-        <div>
-            <label>Augalų kiekis - vienetai:</label>
-            <input type="text" name="kiekis">
-        </div>
-        <div>
-            <label>Vazono talpa, pvz O,5 litro, 2 litrai:</label>
-            <input type="text" name="talpos_dydis">
-        </div>
-        <div>
-            <label>Nurodykite sėjimo datą šiuo formatu (YYYY-MM-DD):</label>
-            <input type="text" name="sejimo_data">
-        </div>
-        <div>
-            <label>Įveskite sėjimo vietą (šiltanamis, laukas):</label>
-            <input type="text" name="sejimo_vieta">
-         </div>
-        <div>
-            <label>Įveskite žemių rūši, kuriame sėjami augalai (juodžemis, priesmėlis):</label>
-            <input type="text" name="zemiu_rusis">
-        </div>
-        <div>
-            <label>Pastabos:</label>
-            <input type="text" name="pastabos">
-        </div>
 
-        <input type="submit" value="Pridėti naują augalą">
-    </form>
-{% endblock %}ml>
+{% endblock %}
