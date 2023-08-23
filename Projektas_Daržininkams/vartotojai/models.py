@@ -2,76 +2,77 @@ import uuid as uuid
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractUser
 
-
-class MyUserManager(BaseUserManager):
-    def create_user(self, email, miestas, password=None):
-        """
-        Creates and saves a User with the given email, date of
-        birth and password.
-        """
-        if not email:
-            raise ValueError('Users must have an email address')
-
+class VartotojoAdministravimas(BaseUserManager):
+    def create_user(self, vardas, pavarde, telefonas, elektroninis_pastas, password=None):
+        if not elektroninis_pastas:
+            raise ValueError('Vartotojas privalo įvesti savo el. pašto adresą')
         user = self.model(
-            email=self.normalize_email(email),
-            miestas=miestas,
+            vardas=vardas,
+            pavarde=pavarde,
+            telefonas=telefonas,
+            elektroninis_pastas=self.normalize_email(elektroninis_pastas),
         )
 
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, miestas, password=None):
-        """
-        Creates and saves a superuser with the given email, date of
-        birth and password.
-        """
+    def create_superuser(self, vardas, pavarde, telefonas, elektroninis_pastas, password=None):
         user = self.create_user(
-            email,
+            vardas=vardas,
+            pavarde=pavarde,
+            telefonas=telefonas,
+            elektroninis_pastas=elektroninis_pastas,
             password=password,
-            miestas=miestas,
         )
-        user.is_admin = True
+        user.admin = True
+        user.superuser = True
+        user.staff = True
         user.save(using=self._db)
         return user
 
 
 class Vartotojas(AbstractUser):
-    email = models.EmailField(
-        verbose_name='email address',
+    elektroninis_pastas = models.EmailField(
+        verbose_name="El. pašto adresas",
         max_length=255,
         unique=True,
     )
-    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, )
-    miestas = models.CharField(max_length= 50, default=True)
-    is_active = models.BooleanField(default=True)
-    is_admin = models.BooleanField(default=False)
-
-    objects = MyUserManager()
-
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['miestas']
+    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    vardas = models.CharField(max_length= 50, verbose_name="Vardas", null=True, blank=True)
+    pavarde = models.CharField(max_length= 50, verbose_name="Pavardė", null=True, blank=True)
+    telefonas = models.CharField(max_length= 50, verbose_name="Telefono numeris", null=True, blank=True)
+    active = models.BooleanField(default=True)
+    admin = models.BooleanField(default=False)
+    staff = models.BooleanField(default=False)
 
 
+    objects = VartotojoAdministravimas()
 
+    USERNAME_FIELD = "elektroninis_pastas"
+    REQUIRED_FIELDS = ["vardas", "pavarde", "telefonas"]
 
+    def __str__( self ):
+        return f"{self.vardas} {self.pavarde}"
+
+    class Meta:
+        verbose_name = "Vartotojas"
+        verbose_name_plural = "Vartotojai"
 
 
     def __str__(self):
         return self.email
 
     def has_perm(self, perm, obj=None):
-        "Does the user have a specific permission?"
-        # Simplest possible answer: Yes, always
         return True
 
     def has_module_perms(self, app_label):
-        "Does the user have permissions to view the app `app_label`?"
-        # Simplest possible answer: Yes, always
         return True
 
     @property
     def is_staff(self):
-        "Is the user a member of staff?"
-        # Simplest possible answer: All admins are staff
-        return self.is_admin
+        return self.staff
+
+    @property
+    def is_admin(self):
+        return self.admin

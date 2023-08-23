@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block "content" %}
+
+  <title>Registracijos forma</title>
+
+
+ <form action="payment.html" method="post" autocomplete="on"><br>
+                    <fieldset>
+                    <legend><h1 style="text-align:center;">Registracijos forma</h1></legend>
+                        <h3>Laukeliai kuriuos yra privaloma užpildyti pažymėti šiuo simboliu:<mark>&lowast;</mark></h3>
+                        <h2>Kontaktinė informacija</h2>
+                    <label for="fn">
+                        Vardas:&lowast;
+                    <input type="text" id="fn" name="fn" required>
+                    </label>
+                    <br><br>
+                    <label for="email">
+                        El. Paštas:&lowast;
+                    <input type="email" id="email" name="email" required>
+                    </label>
+                    <br><br>
+                    <label for="password">
+                        Slaptažodis:&lowast;
+                    <input type="password" id="password" name="password" required>
+                    </label>
+                    <br><br>
+
+                    <h2>Mokėjimo informacija</h2>
+                    <label for="cct">Kreditinės kortelės tipas
+                    <select name="cars" id="cct">
+                     <option value="Kreditinė kortelė1">Visa</option>
+                     <option value="Kreditinė kortelė2">Mastercard</option>
+                     <option value="Kreditinė kortelė3">American Express</option>
+                     <option value="Kreditinė kortelė4">Discover</option>
+                    </select>
+                    </label>
+                    <br><br>
+                    <label for="ccn">
+                        Kredito kortelės numemris:&lowast;
+                    <input type="text" id="ccn" name="ccn"  pattern=".{10,19}" title="Turi būti įrašyta nuo 10 iki 19 simbolių" required>
+                    </label>
+                    <br><br>
+                    <label for="exd">
+                        Galiojimo pabaiga:&lowast;
+                    <input type="date" id="exd" name="exd"  required>
+                    </label>
+                    <br><br>
+
+                    <label for="Confirm">
+                        Sutinku su terminais ir sąlygomis:
+                    <input type="checkbox" id="Confirm" name="Confirm">
+                    </label>
+                    <br><br>
+
+                    <input type="submit" value="Pradėti mokėjimą"><br>
+                    </fieldset>
+                </form>
+

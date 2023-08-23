@@ -34,17 +34,21 @@ ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost').split(',')
 # Application definition
 
 INSTALLED_APPS = [
+# Mano sukurti Appsai
+    "augalas",
+    "darzas",
+    "vartotojai",
+    # Django appsai
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-# Mano sukurti Appsai
-    "augalas",
-    "darzas",
 
 ]
+
+AUTH_USER_MODEL="vartotojai.Vartotojas"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

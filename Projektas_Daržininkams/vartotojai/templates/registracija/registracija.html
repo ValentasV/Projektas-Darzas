@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+
+{% block "content" %}
+
+    <title>Vartotojo Registracija</title>
+
+    <h1>Registracija</h1>
+
+    {% if klaida %}
+    <p>{{ klaida }}</p>
+    {% endif %}
+
+    <form action="registracija.html" method="post" style="display: flex-direction: column; align-items: center" autocomplete="on">
+        <br>
+        {% csrf_token %}
+
+        <label for="Vardas">Vardas:</label>
+        <input type="text" id="Vardas" name="Vardas" required><br><br>
+
+        <label for="Pavarde">Pavardė:</label>
+        <input type="text" id="Pavarde" name="Pavarde" required><br><br>
+
+        <label for="Telefonas">Telefonas:</label>
+        <input type="tel" id="Telefonas" name="Telefonas" pattern="[0-9]{9}" required><br><br>
+
+        <label for="elektroninis_pastas">Elektroninis paštas:</label>
+        <input type="email" id="elektroninis_pastas" name="elektroninis_pastas" required><br><br>
+
+        <label for="password">Slaptažodis:</label>
+        <input type="password" id="password" name="slaptažodis" required><br><br>
+
+        <input type="submit" value="Registruotis">
+    </form>
+
+
+{% endblock %}
