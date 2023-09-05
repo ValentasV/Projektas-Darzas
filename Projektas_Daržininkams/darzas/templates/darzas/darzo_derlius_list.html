@@ -2,52 +2,51 @@
 {% block "content" %}
 
 <style>
-    .Augalas1 {
+    .Derlius1 {
         position: relative;
         right: -80px;
         top: 10px;
     }
 
-    .Augalo_list {
+    .Derlius_list {
         position: relative;
         right: -80px;
     }
 
-     .sejimo-data {
+    .Darzo_derliaus-data {
         text-decoration: none;
         margin: 100px;
-     }
+    }
 
 </style>
 
-
- <h1 class="Augalas1">Augalai</h1> <br>
+ <h1 class="Derlius1">Daržo Derlius</h1> <br>
 
 
 <table class="table table-striped table-hover">
-    {% for augalas in object_list %}
+    {% for darzoderlius in object_list %}
     <tr>
         <td>
-            <a class="Augalo_list" href="{% url 'augalo-id' augalas.id %}">
-                {{ augalas.nuotrauka }}
-                {{ augalas.pavadinimas }} -
-                {{ augalas.veisle }} -
-                {{ augalas.kategorija }}
+            <a class="Derlius_list" href="{% url 'derliaus_id' darzoderlius.id %}">
+                {{ darzoderlius.augalas.pavadinimas }} -
+                {{ darzoderlius.augalas.veisle }}
             </a>
 
-            <span class="sejimo-data">Sėjimo - Sodinimo data: {{ augalas.sejimo_arba_sodinimo_data | date:'Y-m-d'}}</span>
+            <span class="Darzo_derliaus-data">Derliaus nuėmimo data: {{ darzoderlius.derliaus_nuemimo_data | date:'Y-m-d' }}</span>
 
         </td>
 
+
         <td>
-            <a href="{% url 'augalo_koregavimas' augalas.id %}">
+            <a href="{% url 'darzo_derliaus_redagavimas' darzoderlius.id %}">
                 <input class="btn btn-info btn-sm" type="submit" value="Redaguoti">
             </a>
         </td>
 
 
-         <td>
-            <form method="post" action="{% url 'augalo_pasalinimas' augalas.pk %}">
+
+        <td>
+            <form method="post" action="{% url 'derliaus_pasalinimas' darzoderlius.pk %}">
             {% csrf_token %}
             <input class="btn btn-danger btn-sm" type="submit" value="Pašalinti">
             </form>
@@ -61,5 +60,3 @@
 {% include 'pagination.html' %}
 
 {% endblock %}
-
-

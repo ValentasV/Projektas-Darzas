@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block "content" %}
+
+<style>
+    .Derlius2 {
+        position: relative;
+        right: -80px;
+        top: 10px;
+    }
+
+    .Derliaus_detail {
+        position: relative;
+        right: -80px;
+        top: 10px;
+    }
+</style>
+
+ <h1 class="Derlius2">Daržo Derlius</h1> <br>
+
+    <div class="Derliaus_detail">
+
+                        <br>Augalo pavadinimas ir veislė: {{ darzoderlius.augalas }}<br>
+                        {% if darzoderlius.derliaus_nuemimo_data %}
+                        <br>Daržo derliaus nuėmimo data: {{ darzoderlius.derliaus_nuemimo_data }}<br>
+                        {% endif %}
+                        {% if darzoderlius.derliaus_kiekis %}
+                        <br>Derliaus kiekis: {{ darzoderlius.derliaus_kiekis }}<br>
+                        {% endif %}
+                        {% if darzoderlius.derliaus_sandeliavimo_vieta %}
+                        <br>Derliaus laikymo vieta: {{ darzoderlius.derliaus_sandeliavimo_vieta }}<br>
+                        {% endif %}
+                        {% if darzoderlius.derliaus_laikymo_laikotarpis %}
+                        <br>Derliaus laikymo laikoratpis: {{ darzoderlius.derliaus_laikymo_laikotarpis }}<br>
+                        {% endif %}
+
+
+    </div>
+
+{% endblock %}

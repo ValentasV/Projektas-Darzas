@@ -22,10 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure--70vz$xxl8gy&@+i7=0&hh$ibxiuns#s4hk*k$#!p0l_o5goj@'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost').split(',')
 # ALLOWED_HOSTS = []
@@ -34,7 +36,7 @@ ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost').split(',')
 # Application definition
 
 INSTALLED_APPS = [
-# Mano sukurti Appsai
+    # Mano sukurti Appsai
     "augalas",
     "darzas",
     "vartotojai",
@@ -48,7 +50,7 @@ INSTALLED_APPS = [
 
 ]
 
-AUTH_USER_MODEL="vartotojai.Vartotojas"
+AUTH_USER_MODEL = "vartotojai.Vartotojas"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

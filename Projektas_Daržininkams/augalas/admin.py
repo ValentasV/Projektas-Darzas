@@ -6,15 +6,19 @@ from augalas.models import Augalas
 class AugalasAdmin(admin.ModelAdmin):
 
     # Admino puslapyje nurodom kokius klasės modelius norime, kad mums rodytu lentelė
-    list_display = ["kategorija",
-                    "pavadinimas",
+    list_display = ["pavadinimas",
                     "veisle",
+                    "kategorija",
                     "kiekis",
                     "talpos_dydis",
                     "sejimo_arba_sodinimo_data",
                     "sejimo_arba_sodinimo_vieta",
                     "zemiu_rusis",
-                    "pastabos"]
+                    "pastabos",
+                    "nuotrauka",
+                    ]
+
+    ordering = ["kategorija", "pavadinimas"]
 
 
 

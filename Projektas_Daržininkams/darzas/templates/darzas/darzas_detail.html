@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block "content" %}
+
+<style>
+    .Darzas2 {
+        position: relative;
+        right: -80px;
+        top: 10px;
+    }
+
+    .Sarzo_detail {
+        position: relative;
+        right: -80px;
+        top: 10px;
+    }
+</style>
+
+ <h1 class="Darzas2">Daržo informacija</h1> <br>
+
+    <div class="Darzo_detail">
+
+                <br>Augalo pavadinimas ir veislė: {{ darzas.augalas }}<br>
+                {% if darzas.pikiavimo_data %}
+                <br>Augalų pikiavimo data: {{ darzas.pikiavimo_data }}<br>
+                {% endif %}
+                <br>Augalų persodinimo vieta: {{ darzas.persodinimo_vieta }} <br>
+                <br>Augalų užsodinimo plotas: {{ darzas.augalo_uzsodinimo_plotas }} <br>
+
+
+    </div>
+
+{% endblock %}

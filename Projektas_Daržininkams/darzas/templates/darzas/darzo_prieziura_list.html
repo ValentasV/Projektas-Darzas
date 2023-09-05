@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block "content" %}
+
+<style>
+
+    .Prieziura1 {
+        position: relative;
+        right: -80px;
+        top: 10px;
+    }
+
+    .Prieziura_list {
+        position: relative;
+        right: -80px;
+    }
+
+     .Prieziuros_data {
+        text-decoration: none;
+        margin: 100px;
+     }
+
+</style>
+
+
+ <h1 class="Prieziura1">Daržo Priežiūra</h1> <br>
+
+<table class="table table-striped table-hover">
+    {% for darzoprieziura in object_list %}
+    <tr>
+        <td>
+            <a class="Prieziura_list" href="{% url 'darzo_darbu_id' darzoprieziura.id %}">
+                {{ darzoprieziura.darzas.augalas.pavadinimas }} -
+                {{ darzoprieziura.darzas.augalas.veisle }} -
+                {{ darzoprieziura.darzodarbai }}
+            </a>
+
+            <span class="Prieziuros_data">Augalų priežiūros data: {{ darzoprieziura.augalu_prieziuros_data | date:'Y-m-d' }}</span>
+
+        </td>
+
+
+        <td>
+            <a href="{% url 'darzo_prieziuros_redagavimas' darzoprieziura.id %}">
+                <input class="btn btn-info btn-sm" type="submit" value="Redaguoti">
+            </a>
+        </td>
+
+
+
+        <td>
+            <form method="post" action="{% url 'prieziuros_pasalinimas' darzoprieziura.pk %}">
+            {% csrf_token %}
+            <input class="btn btn-danger btn-sm" type="submit" value="Pašalinti">
+            </form>
+         </td>
+
+
+
+
+    </tr>
+    {% endfor %}
+</table>
+
+{% include 'pagination.html' %}
+
+{% endblock %}

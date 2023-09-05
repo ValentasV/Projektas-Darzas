@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block "content" %}
+
+<style>
+.centravimas {
+    text-align: center;
+}
+</style>
+
+ <div class="centravimas">
+{% if searched %}
+ <h2>Jūs ieškojote - {{searched}}</h2><br>
+
+    {% for a in augalas %}
+        <a href="{% url 'augalo-id' a.id %}">
+                {{ a.pavadinimas }}
+                {{ a.veisle }}
+        </a><br/>
+    {% endfor %}
+
+         {% for b in darzodarbas %}
+        <a href="{% url 'darzo_darbu_id' b.id %}">
+                {{ b.darzodarbai.pavadinimas }}  {{ b.darzas.augalas.pavadinimas }}
+        </a><br/>
+    {% endfor %}
+
+{% else %}
+    <h2>Neatlikote augalo paieškos !!!</h2>
+{% endif %}
+
+
+    </div>
+{% endblock %}

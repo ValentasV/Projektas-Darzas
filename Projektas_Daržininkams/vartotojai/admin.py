@@ -4,21 +4,21 @@ from vartotojai.models import Vartotojas
 
 
 class VartotojasAdmin(UserAdmin):
-    list_display = ("vardas", "pavarde", "telefonas", "elektroninis_pastas", "active", "admin")
-    list_filter = ("vardas", "pavarde", "active", "admin")
+    list_display = ("first_name", "last_name", "phone", "email", "active", "admin")
+    list_filter = ("first_name", "last_name", "active", "admin")
     fieldsets = (
-        (None, {"fields": ["elektroninis_pastas", "password"]}),
-        ("Personal Info", {"fields": ("vardas", "pavarde", "telefonas")}),
+        (None, {"fields": ["email", "password"]}),
+        ("Personal Info", {"fields": ("first_name", "last_name", "phone")}),
         ("Permissions", {"fields": ["admin", "staff", "active"]}),
     )
     add_fieldsets = (
         (None, {
             "classes": ["wide"],
-            "fields": ["vardas", "pavarde", "telefonas", "elektroninis_pastas", "password1", "password2"],
+            "fields": ["first_name", "last_name", "phone", "email", "password1", "password2"],
         }),
     )
-    search_fields = ["vardas", "elektroninis_pastas"]
-    ordering = ["vardas"]
+    search_fields = ["first_name", "email"]
+    ordering = ["first_name"]
     filter_horizontal = []
 
 admin.site.register(Vartotojas, VartotojasAdmin)

@@ -3,26 +3,26 @@ from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractUser
 
 class VartotojoAdministravimas(BaseUserManager):
-    def create_user(self, vardas, pavarde, telefonas, elektroninis_pastas, password=None):
-        if not elektroninis_pastas:
+    def create_user(self, first_name, last_name, phone, email, password=None):
+        if not email:
             raise ValueError('Vartotojas privalo įvesti savo el. pašto adresą')
         user = self.model(
-            vardas=vardas,
-            pavarde=pavarde,
-            telefonas=telefonas,
-            elektroninis_pastas=self.normalize_email(elektroninis_pastas),
+            first_name=first_name,
+            last_name=last_name,
+            phone=phone,
+            email=self.normalize_email(email),
         )
 
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, vardas, pavarde, telefonas, elektroninis_pastas, password=None):
+    def create_superuser(self, first_name, last_name, phone, email, password=None):
         user = self.create_user(
-            vardas=vardas,
-            pavarde=pavarde,
-            telefonas=telefonas,
-            elektroninis_pastas=elektroninis_pastas,
+            first_name=first_name,
+            last_name=last_name,
+            phone=phone,
+            email=email,
             password=password,
         )
         user.admin = True
@@ -33,15 +33,14 @@ class VartotojoAdministravimas(BaseUserManager):
 
 
 class Vartotojas(AbstractUser):
-    elektroninis_pastas = models.EmailField(
+    email = models.EmailField(
         verbose_name="El. pašto adresas",
         max_length=255,
         unique=True,
     )
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    vardas = models.CharField(max_length= 50, verbose_name="Vardas", null=True, blank=True)
-    pavarde = models.CharField(max_length= 50, verbose_name="Pavardė", null=True, blank=True)
-    telefonas = models.CharField(max_length= 50, verbose_name="Telefono numeris", null=True, blank=True)
+    username = models.CharField(max_length= 50, null=True, blank=True)
+    phone = models.CharField(max_length= 50, verbose_name="Telefono numeris", null=True, blank=True)
     active = models.BooleanField(default=True)
     admin = models.BooleanField(default=False)
     staff = models.BooleanField(default=False)
@@ -49,19 +48,16 @@ class Vartotojas(AbstractUser):
 
     objects = VartotojoAdministravimas()
 
-    USERNAME_FIELD = "elektroninis_pastas"
-    REQUIRED_FIELDS = ["vardas", "pavarde", "telefonas"]
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["first_name", "last_name", "phone"]
 
     def __str__( self ):
-        return f"{self.vardas} {self.pavarde}"
+        return f"{self.first_name}"
 
     class Meta:
         verbose_name = "Vartotojas"
         verbose_name_plural = "Vartotojai"
 
-
-    def __str__(self):
-        return self.email
 
     def has_perm(self, perm, obj=None):
         return True

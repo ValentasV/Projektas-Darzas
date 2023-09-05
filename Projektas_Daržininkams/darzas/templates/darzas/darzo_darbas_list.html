@@ -2,42 +2,34 @@
 {% block "content" %}
 
 <style>
-    .Darzas1 {
+    .Darbas1 {
         position: relative;
         right: -80px;
         top: 10px;
     }
 
-    .Darzo_list {
-        position: relative;
-        right: -80px;
-    }
+
 </style>
 
- <h1 class="Darzas1">Daržas</h1> <br>
+ <h1 class="Darbas1">Daržo darbų sąrašas</h1> <br>
 
 <table class="table table-striped table-hover">
-    {% for darzas in object_list %}
+    {% for darzodarbas in object_list %}
     <tr>
         <td>
-            <a class="Darzo_list" href="{% url 'darzo-id' darzas.id %}">
-                {{ darzas.augalas.pavadinimas }} -
-                {{ darzas.augalas.veisle }}
-            </a>
-            
-
+                {{ darzodarbas.pavadinimas }}
         </td>
 
 
-        <td>
-            <a href="{% url 'darzo_koregavimas' darzas.id %}">
+         <td>
+            <a href="{% url 'darbo_koregavimas' darzodarbas.id %}">
                 <input class="btn btn-info btn-sm" type="submit" value="Redaguoti">
             </a>
         </td>
 
 
         <td>
-            <form method="post" action="{% url 'darzo_pasalinimas' darzas.pk %}">
+            <form method="post" action="{% url 'darbo_pasalinimas' darzodarbas.pk %}">
             {% csrf_token %}
             <input class="btn btn-danger btn-sm" type="submit" value="Pašalinti">
             </form>
@@ -50,4 +42,4 @@
 
 {% include 'pagination.html' %}
 
-{% endblock %}
+{% endblock %}l>

@@ -1,9 +1,36 @@
+{% extends "base.html" %}
 
 
-<h2>Prisijungimas</h2>
+{% block "content" %}
 
-<form method="post">
+<style>
+.in {
+  text-align: center;
+  width: 500px;
+  margin: 0 auto;
+}
+
+.in input {
+  text-align: center;
+  width: 100%;
+  clear: both;
+}
+</style>
+
+<h2 style="text-align: center;">Prisijungimas</h2>
+
+<div class="in">
+<form action="" method=POST>
     {% csrf_token %}
+
     {{ form.as_p }}
     <button type="submit">Prisijungti</button>
 </form>
+</div>
+{% endblock %}
+
+
+
+
+
+

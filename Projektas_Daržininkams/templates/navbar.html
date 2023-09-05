@@ -1,31 +1,104 @@
+<style>
+.white-text {
+    color: #FFE4C4;
+    margin-left: 30px;
+    margin-top: 8px;
+}
+</style>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Tinklapio navigacija</a>
+    {% if not user.is_authenticated %}
+    <a class="navbar-brand" href="{% url 'pradinis' %}">Pradinis Puslapis</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+    {% endif %}
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        {% if user.is_authenticated %}
+        <li class="nav-item white-text">
+            Esate prisijungęs kaip:
+            {{ user.first_name }}
+            {{ user.last_name }}
+        </li>
+        {% else %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'registracijos_forma' %}">Naujo Vartotojo Registracija</a>
         </li>
            <li class="nav-item">
           <a class="nav-link" href="{% url 'prisijungimo_forma' %}">Prisijungti</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'augalo-info' %}">Augalų Sąrašas</a>
+
+
+       {% endif %}
+
+      {% if user.is_authenticated %}
+
+
+
+        <li class="nav-item dropdown">
+          <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Mano Paskyra
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="nav-link" href="{% url 'atsijungimas' %}">Atsijungti</a></li>
+            <li><a class="nav-link" href="{% url 'istrynimas' %}">Ištrinti Paskyrą</a></li>
+          </ul>
         </li>
-         <li class="nav-item">
-          <a class="nav-link" href="{% url 'naujas-augalas' %}">Pridėti Augalą</a>
+
+        <li class="nav-item dropdown">
+          <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Mano Augalai
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="nav-link" href="{% url 'augalo-info' %}">Augalų Sąrašas</a></li>
+            <li><a class="nav-link" href="{% url 'naujas-augalas' %}">Pridėti Augalą</a></li>
+          </ul>
         </li>
-         <li class="nav-item">
-          <a class="nav-link" href="{% url 'darzo-info' %}">Daržo Informacija</a>
+
+        <li class="nav-item dropdown">
+          <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Daržas
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="nav-link" href="{% url 'naujas-darzas' %}">Pridėti Daržą</a></li>
+            <li><a class="nav-link" href="{% url 'darzo-info' %}">Daržo Informacija</a></li>
+          </ul>
         </li>
+
+
+        <li class="nav-item dropdown">
+          <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Daržo Darbai
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="nav-link" href="{% url 'darzo_darbai' %}">Daržo Priežiūra</a></li>
+            <li><a class="nav-link" href="{% url 'nauja-prieziura' %}">Pridėti Daržo Priežiūrą</a></li>
+            <li><a class="nav-link" href="{% url 'darbai' %}">Darbų sąrašas</a></li>
+            <li><a class="nav-link" href="{% url 'naujas-darbas' %}">Pridėti naują daržo darbą</a></li>
+          </ul>
+          </li>
+          <li class="nav-item dropdown">
+          <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Augalų Derlius
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="nav-link" href="{% url 'derlius' %}">Augalų derliaus sąrašas</a></li>
+            <li><a class="nav-link" href="{% url 'naujas_derlius' %}">Pridėti naują gaugalų derlių</a></li>
+          </ul>
+        </li>
+
+
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+      <form class="d-flex" method=POST action="{% url 'search' %}" role="search">
+        {% csrf_token %}
+        <input class="form-control me-2" type="search" placeholder="Augalo paieška" aria-label="Search" name="searched">
+        <button class="btn btn-outline-secondary" type="submit">Search</button>
       </form>
+      {% endif%}
     </div>
   </div>
 </nav>
+

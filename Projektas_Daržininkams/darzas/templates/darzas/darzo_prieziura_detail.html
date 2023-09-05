@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block "content" %}
+
+<style>
+    .Prieziura2 {
+        position: relative;
+        right: -80px;
+        top: 10px;
+    }
+
+    .Prieziura_detail {
+        position: relative;
+        right: -80px;
+        top: 10px;
+    }
+</style>
+
+ <h1 class="Prieziura2">Daržo informacija</h1> <br>
+
+    <div class="Prieziura_detail">
+
+                        <br>Augalo pavadinimas ir veislė: {{ darzoprieziura.darzas.augalas }}<br>
+                        {% if darzoprieziura.augalu_prieziuros_data %}
+                        <br>Augalų priežiuros data: {{ darzoprieziura.augalu_prieziuros_data }}<br>
+                        {% endif %}
+                        <br>Daržo darbas: {{ darzoprieziura.darzodarbai }} <br>
+                        {% if darzoprieziura.augalu_prieziuros_informacija %}
+                        <br>Detalesnė augalu priežiūros informacija: {{ darzoprieziura.augalu_prieziuros_informacija }}<br>
+                        {% endif %}
+                        {% if darzoprieziura.pastabos %}
+                        <br>Pastabos: {{ darzoprieziura.pastabos }}<br>
+                        {% endif %}
+
+
+    </div>
+
+{% endblock %}

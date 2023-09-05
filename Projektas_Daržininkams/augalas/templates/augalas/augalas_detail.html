@@ -1,25 +1,41 @@
 {% extends "base.html" %}
 {% block "content" %}
 
- <h1 class="pirma">Augalai</h1> <br>
 
+ <style>
+    .Augalas2 {
+        position: relative;
+        right: -80px;
+        top: 10px;
+    }
+     .Augalo_detail {
+        position: relative;
+        right: -80px;
+        top: 10px;
+    }
+</style>
 
+ <h1 class="Augalas2">Augalo Informacija</h1> <br>
+    <div class="Augalo_detail">
 
-                <br>{{ augalas.kategorija }}<br>
-                <br>{{ augalas.pavadinimas }} <br>
-                <br>{{ augalas.veisle }} <br>
-                <br>{{ augalas.kiekis }} <br>
+                <h3> <strong> Augalo nuotrauka:  </strong>{{ augalas.nuotrauka }} </h3><br>
+                <h3> <strong> Augalo kategorija:  </strong>{{ augalas.kategorija }} </h3><br>
+                <h5> <strong>Augalo pavadinimas:  </strong>{{ augalas.pavadinimas }}</h5><br>
+                <strong>Augalo veislė:  </strong>{{ augalas.veisle }} <br>
+                <br> <strong>Augalų kiekis:  </strong>{{ augalas.kiekis }} <br>
                 {% if augalas.talpos_dydis %}
-                <br>{{ augalas.talpos_dydis }}<br>
+                <br> <strong>Vazono - daigyklos talpa:  </strong>{{ augalas.talpos_dydis }}<br>
                 {% endif %}
-                <br>{{ augalas.sejimo_data }} <br>
-                <br>{{ augalas.sejimo_vieta }} <br>
+                <br> <strong>Augalo sėjimo-sodinimo data:  </strong>{{ augalas.sejimo_arba_sodinimo_data }} <br>
+                <br> <strong>Augalo sėjimo-sodinimo vieta:  </strong>{{ augalas.sejimo_arba_sodinimo_vieta}} <br>
                 {% if augalas.zemiu_rusis %}
-                <br>{{ augalas.zemiu_rusis }}<br>
+                <br><strong>Augalo sėjimo-sodinimo vietos žemių rūšis:  </strong>{{ augalas.zemiu_rusis }}<br>
                 {% endif %}
                 {% if augalas.pastabos %}
-                <br>{{ augalas.pastabos }}<br>
+                <br><strong>Pastabos:  </strong>{{ augalas.pastabos }}<br>
                 {% endif %}
+    </div>
+
 
 
 
