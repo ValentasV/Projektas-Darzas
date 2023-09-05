@@ -27,6 +27,12 @@ class NaujasDarzasView(LoginRequiredMixin, FormView):
     form_class = DarzoForm
     template_name = "darzas/naujas_darzas.html"
     success_url = "/augalai/succes/"
+
+    def get_form_kwargs(self):
+        kwargs = super(NaujasDarzasView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
     def form_valid(self, form):
         form.instance.naudotojas=self.request.user
         form.save()
@@ -118,6 +124,12 @@ class NaujaPrieziuiraView(LoginRequiredMixin, FormView):
     form_class = DarzoPriuziurosForm
     template_name = "darzas/nauja_prieziura.html"
     success_url = "/augalai/succes/"
+
+    def get_form_kwargs(self):
+        kwargs = super(NaujaPrieziuiraView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
     def form_valid(self, form):
         form.instance.naudotojas=self.request.user
         form.save()

@@ -6,6 +6,14 @@ from .models import Darzas, DarzoPrieziura, DarzoDerlius, DarzoDarbas
 
 
 class DarzoForm(ModelForm):
+
+
+    augalas = forms.ModelChoiceField(queryset=None)
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        super(DarzoForm, self).__init__(*args, **kwargs)
+        self.fields["augalas"].queryset = Augalas.objects.filter(naudotojas=self.user)
+
     class Meta:
         model = Darzas
         fields = (
@@ -23,7 +31,7 @@ class DarzoForm(ModelForm):
         }
 
         widgets = {
-            "augalas": forms.Select(attrs={"class":"form-control", "placeholder": "Augalai"}),
+            "augalas": forms.Select(choices="", attrs={"class":"form-control", "placeholder": "Augalai"}),
             "pikiavimo_data": forms.DateInput(attrs={"class":"form-control", "placeholder": "Pikiavimo data (YYYY-MM-DD) formatu"}),
             "persodinimo_vieta": forms.TextInput(attrs={"class":"form-control", "placeholder": "Persodinimo vieta"}),
             "augalo_uzsodinimo_plotas": forms.TextInput(attrs={"class": "form-control", "placeholder": "Augalo užsodinimo plotas"})
@@ -50,6 +58,15 @@ class DarboForm(ModelForm):
 
 
 class DarzoPriuziurosForm(ModelForm):
+
+    darzas = forms.ModelChoiceField(queryset=None)
+    darzodarbai = forms.ModelChoiceField(queryset=None)
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        super(DarzoPriuziurosForm, self).__init__(*args, **kwargs)
+        self.fields["darzas"].queryset = Darzas.objects.filter(augalas__naudotojas=self.user)
+        self.fields["darzodarbai"].queryset = DarzoDarbas.objects.filter(naudotojas=self.user)
+
     class Meta:
         model = DarzoPrieziura
         fields = (
@@ -69,9 +86,9 @@ class DarzoPriuziurosForm(ModelForm):
         }
 
         widgets = {
-            "darzas": forms.Select(attrs={"class":"form-control", "placeholder": "Augalai"}),
+            "darzas": forms.Select(choices="", attrs={"class":"form-control", "placeholder": "Augalai"}),
             "augalu_prieziuros_data": forms.DateInput(attrs={"class":"form-control", "placeholder": "Augalų priežiūros data (YYYY-MM-DD) formatu"}),
-            "darzodarbai": forms.Select(attrs={"class":"form-control", "placeholder": "Daržo darbas"}),
+            "darzodarbai": forms.Select(choices="", attrs={"class":"form-control", "placeholder": "Daržo darbas"}),
             "augalu_prieziuros_informacija": forms.TextInput(attrs={"class": "form-control", "placeholder": "Detalesnė informacija apie atliktą daržo darbą"}),
             "pastabos": forms.TextInput(attrs={"class": "form-control", "placeholder": "Pastabos"})
         }
@@ -83,11 +100,8 @@ class DarzoDerliausForm(ModelForm):
 
     augalas = forms.ModelChoiceField(queryset=None)
     def __init__(self, *args, **kwargs):
-
         self.user = kwargs.pop('user', None)
-
         super(DarzoDerliausForm, self).__init__(*args, **kwargs)
-
         self.fields["augalas"].queryset = Augalas.objects.filter(naudotojas=self.user)
 
     class Meta:
