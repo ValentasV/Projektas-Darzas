@@ -29,15 +29,14 @@
     <tr>
         <td>
             <a class="Augalo_list" href="{% url 'augalo-id' augalas.id %}">
-                {{ augalas.nuotrauka }}
                 {{ augalas.pavadinimas }} -
                 {{ augalas.veisle }} -
                 {{ augalas.kategorija }}
             </a>
 
             <span class="sejimo-data">Sėjimo - Sodinimo data: {{ augalas.sejimo_arba_sodinimo_data | date:'Y-m-d'}}</span>
-
         </td>
+
 
         <td>
             <a href="{% url 'augalo_koregavimas' augalas.id %}">
@@ -52,8 +51,6 @@
             <input class="btn btn-danger btn-sm" type="submit" value="Pašalinti">
             </form>
          </td>
-
-
     </tr>
     {% endfor %}
 </table>

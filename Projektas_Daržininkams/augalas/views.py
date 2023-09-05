@@ -9,6 +9,12 @@ from augalas.forms import AugaloForm
 
 def pradinis(request):
     return render(request, 'augalas/pradinis.html')
+
+def succes_view(request):
+    return render(request, "augalas/succes.html")
+
+def atnaujinta_informacija_view(request):
+    return render(request, "augalas/succes.html")
 # Create your views here.
 
 class AugalasDetailView(LoginRequiredMixin, DetailView):
@@ -27,9 +33,6 @@ class AugalasListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
          return Augalas.objects.filter(naudotojas=self.request.user)
 
-
-def succes_view(request):
-    return render(request, "augalas/succes.html")
 
 class Naujas_augalo_View(LoginRequiredMixin, FormView ):
     form_class = AugaloForm

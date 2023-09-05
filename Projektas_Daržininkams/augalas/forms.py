@@ -7,6 +7,7 @@ from .models import Augalas
 class AugaloForm(ModelForm):
     class Meta:
         model = Augalas
+
         fields = ("nuotrauka",
                   "kategorija",
                   "pavadinimas",

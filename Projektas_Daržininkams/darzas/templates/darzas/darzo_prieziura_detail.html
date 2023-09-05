@@ -19,16 +19,16 @@
 
     <div class="Prieziura_detail">
 
-                        <br>Augalo pavadinimas ir veislė: {{ darzoprieziura.darzas.augalas }}<br>
+                        <br> <strong>Augalo pavadinimas ir veislė: </strong>{{ darzoprieziura.darzas.augalas }}<br>
                         {% if darzoprieziura.augalu_prieziuros_data %}
-                        <br>Augalų priežiuros data: {{ darzoprieziura.augalu_prieziuros_data }}<br>
+                        <br> <strong>Augalų priežiuros data: </strong>{{ darzoprieziura.augalu_prieziuros_data | date:'Y-m-d'}}<br>
                         {% endif %}
-                        <br>Daržo darbas: {{ darzoprieziura.darzodarbai }} <br>
+                        <br> <strong>Daržo darbas: </strong>{{ darzoprieziura.darzodarbai }} <br>
                         {% if darzoprieziura.augalu_prieziuros_informacija %}
-                        <br>Detalesnė augalu priežiūros informacija: {{ darzoprieziura.augalu_prieziuros_informacija }}<br>
+                        <br> <strong>Detalesnė augalu priežiūros informacija: </strong>{{ darzoprieziura.augalu_prieziuros_informacija }}<br>
                         {% endif %}
                         {% if darzoprieziura.pastabos %}
-                        <br>Pastabos: {{ darzoprieziura.pastabos }}<br>
+                        <br> <strong>Pastabos: </strong>{{ darzoprieziura.pastabos }}<br>
                         {% endif %}
 
 

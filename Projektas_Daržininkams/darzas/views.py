@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db import IntegrityError
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, FormView
 from darzas.forms import DarzoForm, DarzoPriuziurosForm, DarzoDerliausForm, DarboForm
@@ -67,9 +68,14 @@ class PridetiDarbaView(LoginRequiredMixin, FormView):
     template_name = "darzas/naujas_darbas.html"
     success_url = "/augalai/succes/"
     def form_valid(self, form):
-        form.instance.naudotojas=self.request.user
-        form.save()
-        return super().form_valid(form)
+        try:
+            form.instance.naudotojas=self.request.user
+            form.save()
+            return super().form_valid(form)
+        except IntegrityError:
+            form.add_error("pavadinimas",
+                "Šis daržo darbas jau yra sukurtas, pridėkite kitą daržo darbą.",)
+            return self.form_invalid(form)
     def get_queryset(self):
         return DarzoDarbas.objects.filter(naudotojas=self.request.user)
 
@@ -159,6 +165,12 @@ class AugaluDerliusView(LoginRequiredMixin, FormView):
     form_class = DarzoDerliausForm
     template_name = "darzas/naujas_derlius.html"
     success_url = "/augalai/succes/"
+
+    def get_form_kwargs(self):
+        kwargs = super(AugaluDerliusView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
     def form_valid(self, form):
         form.instance.naudotojas=self.request.user
         form.save()

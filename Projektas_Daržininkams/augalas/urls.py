@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
-from .views import AugalasListView, Naujas_augalo_View, AugalasDetailView, search, succes_view
+from .views import AugalasListView, Naujas_augalo_View, AugalasDetailView, search, succes_view, \
+    atnaujinta_informacija_view
 
 urlpatterns = [
     path('info/', views.pradinis, name='pradinis'),
@@ -10,5 +11,6 @@ urlpatterns = [
     path('augalo_redagavimas/<int:pk>/', views.augalo_redagavimas, name='augalo_koregavimas'),
     path('augalo_panaikinimas/<int:pk>/', views.augalo_pasalinimas, name='augalo_pasalinimas'),
     path('succes/', succes_view, name='succes'),
+    path('atnaujinta_informacija/', atnaujinta_informacija_view, name='atnaujinta_informacija'),
     path('search/', search, name='search'),
 ]

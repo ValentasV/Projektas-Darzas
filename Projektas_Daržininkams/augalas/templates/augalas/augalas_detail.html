@@ -2,18 +2,7 @@
 {% block "content" %}
 
 
- <style>
-    .Augalas2 {
-        position: relative;
-        right: -80px;
-        top: 10px;
-    }
-     .Augalo_detail {
-        position: relative;
-        right: -80px;
-        top: 10px;
-    }
-</style>
+
 
  <h1 class="Augalas2">Augalo Informacija</h1> <br>
     <div class="Augalo_detail">
@@ -26,7 +15,7 @@
                 {% if augalas.talpos_dydis %}
                 <br> <strong>Vazono - daigyklos talpa:  </strong>{{ augalas.talpos_dydis }}<br>
                 {% endif %}
-                <br> <strong>Augalo sėjimo-sodinimo data:  </strong>{{ augalas.sejimo_arba_sodinimo_data }} <br>
+                <br> <strong>Augalo sėjimo-sodinimo data:  </strong>{{ augalas.sejimo_arba_sodinimo_data | date:'Y-m-d'}} <br>
                 <br> <strong>Augalo sėjimo-sodinimo vieta:  </strong>{{ augalas.sejimo_arba_sodinimo_vieta}} <br>
                 {% if augalas.zemiu_rusis %}
                 <br><strong>Augalo sėjimo-sodinimo vietos žemių rūšis:  </strong>{{ augalas.zemiu_rusis }}<br>

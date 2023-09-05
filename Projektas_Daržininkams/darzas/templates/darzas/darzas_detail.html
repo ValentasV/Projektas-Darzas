@@ -8,7 +8,7 @@
         top: 10px;
     }
 
-    .Sarzo_detail {
+    .Darzo_detail {
         position: relative;
         right: -80px;
         top: 10px;
@@ -19,13 +19,12 @@
 
     <div class="Darzo_detail">
 
-                <br>Augalo pavadinimas ir veislė: {{ darzas.augalas }}<br>
+                <br> <strong>Augalo pavadinimas ir veislė: </strong>{{ darzas.augalas }}<br>
                 {% if darzas.pikiavimo_data %}
-                <br>Augalų pikiavimo data: {{ darzas.pikiavimo_data }}<br>
+                <br> <strong>Augalų pikiavimo data: </strong>{{ darzas.pikiavimo_data | date:'Y-m-d'}}<br>
                 {% endif %}
-                <br>Augalų persodinimo vieta: {{ darzas.persodinimo_vieta }} <br>
-                <br>Augalų užsodinimo plotas: {{ darzas.augalo_uzsodinimo_plotas }} <br>
-
+                <br> <strong>Augalų persodinimo vieta: </strong>{{ darzas.persodinimo_vieta }} <br>
+                <br> <strong>Augalų užsodinimo plotas: </strong>{{ darzas.augalo_uzsodinimo_plotas }} <br>
 
     </div>
 

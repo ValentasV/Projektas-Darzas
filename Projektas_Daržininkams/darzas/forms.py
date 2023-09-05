@@ -1,5 +1,7 @@
 from django import forms
 from django.forms import ModelForm
+
+from augalas.models import Augalas
 from .models import Darzas, DarzoPrieziura, DarzoDerlius, DarzoDarbas
 
 
@@ -78,6 +80,16 @@ class DarzoPriuziurosForm(ModelForm):
 
 
 class DarzoDerliausForm(ModelForm):
+
+    augalas = forms.ModelChoiceField(queryset=None)
+    def __init__(self, *args, **kwargs):
+
+        self.user = kwargs.pop('user', None)
+
+        super(DarzoDerliausForm, self).__init__(*args, **kwargs)
+
+        self.fields["augalas"].queryset = Augalas.objects.filter(naudotojas=self.user)
+
     class Meta:
         model = DarzoDerlius
         fields = (
@@ -97,7 +109,7 @@ class DarzoDerliausForm(ModelForm):
         }
 
         widgets = {
-            "augalas": forms.Select(attrs={"class":"form-control", "placeholder": "Augalai"}),
+            "augalas": forms.Select(choices="", attrs={"class":"form-control", "placeholder": "Augalai"}),
             "derliaus_nuemimo_data": forms.DateInput(attrs={"class":"form-control", "placeholder": "Derliaus nuėmimo data (YYYY-MM-DD) formatu"}),
             "derliaus_kiekis": forms.TextInput(attrs={"class":"form-control", "placeholder": "Derliaus kiekis"}),
             "derliaus_sandeliavimo_vieta": forms.TextInput(attrs={"class": "form-control", "placeholder": "Derliaus sandėliavimo vieta"}),

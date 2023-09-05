@@ -20,8 +20,6 @@ class AugalasAdmin(admin.ModelAdmin):
 
     ordering = ["kategorija", "pavadinimas"]
 
-
-
     # Išfiltruoja variantus pagal pasirinktą kriterijų
     list_filter = ["kategorija", "pavadinimas", "veisle"]
 

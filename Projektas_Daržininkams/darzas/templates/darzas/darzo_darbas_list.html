@@ -8,6 +8,10 @@
         top: 10px;
     }
 
+    .Darbas_list {
+        position: relative;
+        right: -80px;
+    }
 
 </style>
 
@@ -17,11 +21,13 @@
     {% for darzodarbas in object_list %}
     <tr>
         <td>
+            <div class="Darbas_list">
                 {{ darzodarbas.pavadinimas }}
+            </div>
         </td>
 
 
-         <td>
+        <td>
             <a href="{% url 'darbo_koregavimas' darzodarbas.id %}">
                 <input class="btn btn-info btn-sm" type="submit" value="Redaguoti">
             </a>
@@ -33,8 +39,7 @@
             {% csrf_token %}
             <input class="btn btn-danger btn-sm" type="submit" value="Pašalinti">
             </form>
-         </td>
-
+        </td>
 
     </tr>
     {% endfor %}
