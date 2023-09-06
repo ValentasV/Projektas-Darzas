@@ -1,24 +1,24 @@
-.helptext {
-    display:none;
-}
+    .helptext {
+        display:none;
+    }
 
-body {
-    padding-bottom: 80px;
-}
+    body {
+        padding-bottom: 80px;
+    }
 
 
-footer {
-    position: fixed;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    padding: 10px;
-    background: #000000;
-    color:  #E0E0E0;
-    font-size: 20px;
-    z-index: 1;
-}
+    footer {
+        position: fixed;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: 10px;
+        background: #000000;
+        color:  #E0E0E0;
+        font-size: 20px;
+        z-index: 1;
+    }
 
 
 /* Augalas_detail */
@@ -33,3 +33,44 @@ footer {
         right: -80px;
         top: 10px;
     }
+
+/* Augalas_List */
+
+    .Augalas1 {
+        position: relative;
+        right: -80px;
+        top: 10px;
+    }
+
+    .Augalo_list {
+        position: relative;
+        right: -80px;
+    }
+
+     .sejimo-data {
+        text-decoration: none;
+        margin: 100px;
+     }
+
+/* Pradinis_puslapis */
+
+    .Pradinis {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100px;
+    }
+
+    .Pradinis1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100px;
+    }
+
+/* Paieškos_puslapis */
+
+    .centravimas {
+        text-align: center;
+    }
+

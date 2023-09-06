@@ -59,8 +59,8 @@ class DarboForm(ModelForm):
 
 class DarzoPriuziurosForm(ModelForm):
 
-    darzas = forms.ModelChoiceField(queryset=None)
-    darzodarbai = forms.ModelChoiceField(queryset=None)
+    darzas = forms.ModelChoiceField(queryset=None, label="Augalai")
+    darzodarbai = forms.ModelChoiceField(queryset=None, label="Daržo Darbai")
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
         super(DarzoPriuziurosForm, self).__init__(*args, **kwargs)
@@ -103,6 +103,7 @@ class DarzoDerliausForm(ModelForm):
         self.user = kwargs.pop('user', None)
         super(DarzoDerliausForm, self).__init__(*args, **kwargs)
         self.fields["augalas"].queryset = Augalas.objects.filter(naudotojas=self.user)
+
 
     class Meta:
         model = DarzoDerlius

@@ -13,9 +13,6 @@ def pradinis(request):
 def succes_view(request):
     return render(request, "augalas/succes.html")
 
-def atnaujinta_informacija_view(request):
-    return render(request, "augalas/succes.html")
-# Create your views here.
 
 class AugalasDetailView(LoginRequiredMixin, DetailView):
     model = Augalas
@@ -62,6 +59,7 @@ def augalo_redagavimas(request, pk):
         form = AugaloForm(request.POST, instance=augalas)
         if form.is_valid():
             form.save()
+            return redirect('augalo-info')
     else:
         form = AugaloForm(instance=augalas)
     return render(request, 'augalas/augalo_redagavimas.html', {'form': form})

@@ -44,11 +44,11 @@ class NaujasDarzasView(LoginRequiredMixin, FormView):
 def darzo_redagavimas(request, pk):
     darzas = Darzas.objects.get(pk=pk)
     if request.method == 'POST':
-        form = DarzoForm(request.POST, instance=darzas)
+        form = DarzoForm(request.POST, instance=darzas, user=request.user)
         if form.is_valid():
             form.save()
     else:
-        form = DarzoForm(instance=darzas)
+        form = DarzoForm(instance=darzas, user=request.user)
     return render(request, 'darzas/darzo_redagavimas.html', {'form': form})
 
 @login_required
@@ -68,6 +68,14 @@ class DarzoDarbasListView(LoginRequiredMixin, ListView):
     paginate_by = 3
     def get_queryset(self):
         return DarzoDarbas.objects.filter(naudotojas=self.request.user)
+
+
+class  DarzoDarbasDetailView(LoginRequiredMixin, DetailView):
+    model = DarzoDarbas
+    template_name = "darzas/darzo_darbas_detail.html"
+    def get_queryset(self):
+        return DarzoDarbas.objects.filter(augalas__naudotojas=self.request.user)
+
 
 class PridetiDarbaView(LoginRequiredMixin, FormView):
     form_class = DarboForm
@@ -141,11 +149,11 @@ class NaujaPrieziuiraView(LoginRequiredMixin, FormView):
 def prieziuros_redagavimas(request, pk):
     darzoprieziura = DarzoPrieziura.objects.get(pk=pk)
     if request.method == 'POST':
-        form = DarzoPriuziurosForm(request.POST, instance=darzoprieziura)
+        form = DarzoPriuziurosForm(request.POST, instance=darzoprieziura, user=request.user)
         if form.is_valid():
             form.save()
     else:
-        form = DarzoPriuziurosForm(instance=darzoprieziura)
+        form = DarzoPriuziurosForm(instance=darzoprieziura, user=request.user)
     return render(request, 'darzas/darzo_prieziura_redagavimas.html', {'form': form})
 
 @login_required
@@ -192,13 +200,14 @@ class AugaluDerliusView(LoginRequiredMixin, FormView):
 
 @login_required
 def derliaus_redagavimas(request, pk):
+
     darzoderlius = DarzoDerlius.objects.get(pk=pk)
     if request.method == 'POST':
-        form = DarzoDerliausForm(request.POST, instance=darzoderlius)
+        form = DarzoDerliausForm(request.POST, instance=darzoderlius, user=request.user)
         if form.is_valid():
             form.save()
     else:
-        form = DarzoDerliausForm(instance=darzoderlius)
+        form = DarzoDerliausForm(instance=darzoderlius, user=request.user)
     return render(request, 'darzas/darzo_derliaus_redagavimas.html', {'form': form})
 
 @login_required

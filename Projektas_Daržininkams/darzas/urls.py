@@ -3,7 +3,7 @@ from django.urls import path
 from . import views
 from .views import DarzasListView, DarzoPrieziuraListView, DarzoDerliusListView, DarzasDetailView, \
     DarzoPrieziuraDetailView, DarzoDerliusDetailView, NaujasDarzasView, NaujaPrieziuiraView, AugaluDerliusView, \
-    DarzoDarbasListView, PridetiDarbaView
+    DarzoDarbasListView, PridetiDarbaView, DarzoDarbasDetailView
 
 urlpatterns = [
     path("darzas/", DarzasListView.as_view(), name='darzo-info'),
@@ -13,6 +13,7 @@ urlpatterns = [
     path('darzo_panaikinimas/<int:pk>/', views.darzo_pasalinimas, name='darzo_pasalinimas'),
 
     path('darzo_darbas/', DarzoDarbasListView.as_view(), name='darbai'),
+    path("<int:pk>/", DarzoDarbasDetailView.as_view(), name="darbo-id"),
     path('naujas_darbas/', PridetiDarbaView.as_view(), name='naujas-darbas'),
     path('darbo_redagavimas/<int:pk>/', views.darbo_redagavimas, name='darbo_koregavimas'),
     path('darbo_panaikinimas/<int:pk>/', views.darbo_pasalinimas, name='darbo_pasalinimas'),
