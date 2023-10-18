@@ -8,18 +8,23 @@
   text-align: center;
   width: 500px;
   margin: 0 auto;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .form input {
   text-align: center;
   width: 100%;
   clear: both;
+  color: black;
+  font-weight: bold;
 }
 </style>
 
     <title>Vartotojo Registracija</title>
 
-    <h1 style="text-align: center;">Registracija</h1>
+    <h1 style="text-align: center; color: white; font-weight: bold;">Registracija</h1>
 
     {% if klaida %}
     <p>{{ klaida }}</p>
@@ -42,9 +47,9 @@
         <input type="email" id="email" name="email" required><br><br>
 
         <label for="password">Slaptažodis:</label>
-        <input type="password" id="password" name="password" placeholder="Mažiausiai 8 simboliai - 2 skaičiai, bent 1 didžioji raidė ir mažoji raidė" pattern="^(?=.*\d.*\d)(?=.*[A-Z])(?=.*[a-z]).{8,}$" required><br><br>
+        <input type="password" id="password" name="password" placeholder="Iš 8 simbolių iš jų 2 skaičiai, 1 didžioji ir mažoji raidė" pattern="^(?=.*\d.*\d)(?=.*[A-Z])(?=.*[a-z]).{8,}$" required><br><br>
 
-        <input type="submit" value="Registruotis">
+        <input type="submit" value="Registruotis" style="color: black; font-weight: bold;">
     </form>
 </div>
 

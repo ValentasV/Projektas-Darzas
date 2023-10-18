@@ -5,12 +5,14 @@
         position: relative;
         right: -80px;
         top: 10px;
+        color: white;
     }
 
     .Darzo_detail {
         position: relative;
         right: -80px;
         top: 10px;
+        color: white;
     }
 
 /* Darzas_list */
@@ -19,11 +21,18 @@
         position: relative;
         right: -80px;
         top: 10px;
+        color: white;
     }
 
     .Darzo_list {
         position: relative;
         right: -80px;
+    }
+
+/* Naujas_darzas */
+
+    .naujas_darzas {
+        color: white;
     }
 
 /* Darzo__darbo_detail */
@@ -32,12 +41,14 @@
         position: relative;
         right: -80px;
         top: 10px;
+        color: white;
     }
 
     .Darbo_detail {
         position: relative;
         right: -80px;
         top: 10px;
+        color: white;
     }
 
 /* Darzo__darbo_list */
@@ -46,6 +57,7 @@
         position: relative;
         right: -80px;
         top: 10px;
+        color: white;
     }
 
     .Darbas_list {
@@ -53,18 +65,27 @@
         right: -80px;
     }
 
+/* Naujas_darbas */
+
+    .naujas_darbas {
+        color: white;
+    }
+
+
 /* Darzo__derliaus_detail */
 
     .Derlius2 {
         position: relative;
         right: -80px;
         top: 10px;
+        color: white;
     }
 
     .Derliaus_detail {
         position: relative;
         right: -80px;
         top: 10px;
+        color: white;
     }
 
 /* Darzo__derliaus_list */
@@ -73,6 +94,7 @@
         position: relative;
         right: -80px;
         top: 10px;
+        color: white;
     }
 
     .Derlius_list {
@@ -85,18 +107,26 @@
         margin: 100px;
     }
 
+/* Naujas_derlius */
+
+    .naujas_derlius {
+        color: white;
+    }
+
 /* Darzo__prieziura_detail */
 
     .Prieziura2 {
         position: relative;
         right: -80px;
         top: 10px;
+        color: white;
     }
 
     .Prieziura_detail {
         position: relative;
         right: -80px;
         top: 10px;
+        color: white;
     }
 
 /* Darzo__prieziura_list */
@@ -105,6 +135,7 @@
         position: relative;
         right: -80px;
         top: 10px;
+        color: white;
     }
 
     .Prieziura_list {
@@ -116,3 +147,9 @@
         text-decoration: none;
         margin: 100px;
      }
+
+/* Nauja_priežiūra */
+
+    .nauja_priežiūra {
+        color: white;
+    }

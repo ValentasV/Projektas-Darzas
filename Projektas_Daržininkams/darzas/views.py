@@ -47,6 +47,7 @@ def darzo_redagavimas(request, pk):
         form = DarzoForm(request.POST, instance=darzas, user=request.user)
         if form.is_valid():
             form.save()
+            return redirect('darzo-info')
     else:
         form = DarzoForm(instance=darzas, user=request.user)
     return render(request, 'darzas/darzo_redagavimas.html', {'form': form})
@@ -100,6 +101,8 @@ def darbo_redagavimas(request, pk):
         form = DarboForm(request.POST, instance=darzodarbas)
         if form.is_valid():
             form.save()
+            return redirect("darbai")
+
     else:
         form = DarboForm(instance=darzodarbas)
     return render(request, 'darzas/darbo_redagavimas.html', {'form': form})
@@ -152,6 +155,7 @@ def prieziuros_redagavimas(request, pk):
         form = DarzoPriuziurosForm(request.POST, instance=darzoprieziura, user=request.user)
         if form.is_valid():
             form.save()
+            return redirect("darzo_darbai")
     else:
         form = DarzoPriuziurosForm(instance=darzoprieziura, user=request.user)
     return render(request, 'darzas/darzo_prieziura_redagavimas.html', {'form': form})
@@ -206,6 +210,7 @@ def derliaus_redagavimas(request, pk):
         form = DarzoDerliausForm(request.POST, instance=darzoderlius, user=request.user)
         if form.is_valid():
             form.save()
+            return redirect("derlius")
     else:
         form = DarzoDerliausForm(instance=darzoderlius, user=request.user)
     return render(request, 'darzas/darzo_derliaus_redagavimas.html', {'form': form})

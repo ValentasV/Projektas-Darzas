@@ -4,7 +4,7 @@
 
  <div class="centravimas">
 {% if searched %}
- <h2>Jūs ieškojote - {{searched}}</h2><br>
+ <h2 class="Paieškos_spalva">Jūs ieškojote - {{searched}}</h2><br>
 
     {% for a in augalas %}
         <a href="{% url 'augalo-id' a.id %}">
@@ -20,7 +20,7 @@
     {% endfor %}
 
 {% else %}
-    <h2>Neatlikote augalo paieškos !!!</h2>
+    <h2 class="Paieškos_spalva">Neatlikote augalo paieškos !!!</h2>
 {% endif %}
 
 
